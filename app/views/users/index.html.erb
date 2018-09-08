@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Users</h1>
+  <hr />
+  <table class="table" style="border-top: none !important;">
+    <thead>
+      <tr>
+        <th style="border-top: none;">Id</th>
+        <th style="border-top: none;">Name</th>
+        <th style="border-top: none;">Email</th>
+        <th style="border-top: none;">Tasks Created</th>
+        <th style="border-top: none;">Tasks Assigned</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- if @users.empty? %>
+        <tr>
+          <td colspan="5">There are currently no users.</td>
+        </tr>
+      <% end %>
+      <%- @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.reported_issues.count %></td>
+          <td><%= user.assigned_issues.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

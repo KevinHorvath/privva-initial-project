@@ -10,6 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap";
+
+body {
+  padding-top: 65px;
+}
+
+// .field_with_errors label {
+//   color: #dc3545;
+// }
+.field_with_errors input {
+  border-color: #dc3545;
+}
+.field_with_errors input:focus {
+  border-color:#dc3545;
+  box-shadow:0 0 0 .2rem rgba(220,53,69,.25)
+}

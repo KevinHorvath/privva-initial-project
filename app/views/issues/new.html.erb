@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Create Issue</h1>
+  <hr />
+  <%= form_for @issue do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <%= f.label :summary %>
+      <%= f.text_field :summary, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.text_field :status, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :assignee %>
+      <%= f.collection_select :assignee_id, User.all, :id, :name, {}, {class: 'form-control'} %>
+    </div>
+
+    <%= f.submit "Create", class: 'btn btn-primary btn-block' %>
+  <% end %>
+</div>

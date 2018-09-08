@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Issues</h1>
+  <hr />
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="border-top: none;">Id</th>
+        <th style="border-top: none;">Summary</th>
+        <th style="border-top: none;">Status</th>
+        <th style="border-top: none;">Reporter</th>
+        <th style="border-top: none;">Assignee</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- if @issues.empty? %>
+        <tr>
+          <td colspan="5">There are currently no issues.</td>
+        </tr>
+      <% end %>
+      <%- @issues.each do |issue| %>
+        <tr>
+          <td><%= issue.id %></td>
+          <td><%= issue.summary %></td>
+          <td><%= issue.status %></td>
+          <td><%= issue.reporter.name %></td>
+          <td><%= issue.assignee.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
