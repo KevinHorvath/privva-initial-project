@@ -9,8 +9,16 @@ module IssuesHelper
       .order(sort_params)
       .paginate(page: current_page, per_page: page_size)
     issues = issues.where("LOWER(summary) LIKE ?", "%#{params[:summary].downcase}%") if params[:summary].present?
-    issues = issues.joins(:reporter).where("LOWER(users.name) LIKE ?", "%#{params[:reporter]}%").references(:user) if params[:reporter].present?
-    issues = issues.joins(:assignee).where("LOWER(assignees_issues.name) LIKE ?", "%#{params[:assignee]}%").references(:user) if params[:assignee].present?
+    if params[:reporter].present? && params[:assignee].present?
+      issues = issues
+        .joins(:reporter, :assignee)
+        .where("LOWER(users.name) LIKE ?", "%#{params[:reporter]}%")
+        .where("LOWER(assignees_issues.name) LIKE ?", "%#{params[:assignee]}%")
+    elsif params[:reporter].present?
+      issues = issues.joins(:reporter).where("LOWER(name) LIKE ?", "%#{params[:reporter]}%")
+    elsif params[:assignee].present?
+      issues = issues.joins(:assignee).where("LOWER(name) LIKE ?", "%#{params[:assignee]}%")
+    end
     issues
   end
 
