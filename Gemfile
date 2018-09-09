@@ -8,6 +8,7 @@ gem 'tabs_on_rails'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'will_paginate'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'

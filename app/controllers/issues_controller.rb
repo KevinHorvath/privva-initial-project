@@ -3,7 +3,7 @@ class IssuesController < ApplicationController
   set_tab :issues
 
   def index
-    @issues = Issue.all
+    @issues = Issue.includes(:reporter, :assignee)
   end
 
   def new
